@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import { createBrowserRouter } from 'react-router-dom';
 import './App.css';
+import Layout from './components/Layout/Layout';
+import { RouterProvider } from 'react-router-dom';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import Attandance from './Pages/Attandance/Attandance';
+import Accounting from './Pages/Accounting/Accounting';
+import Inventory from './Pages/Inventory/Inventory';
+import Sales from './Pages/Sales/Sales';
+import JobOrder from './Pages/JobOrder/JobOrder';
+import Production from './Pages/Production/Production';
+import Suppliers from './Pages/Suppliers/Suppliers';
+import Employees from './Pages/Employees/Employees';
+let routers = createBrowserRouter([
+  {
+    path: "",
+    element: <Layout />,
+    children: [
+      { index: true, element: <Dashboard /> },
+      { path: "Attandance", element: <Attandance /> },
+      { path: "JobOrder", element: <JobOrder /> },
+      { path: "Inventory", element: <Inventory/> },
+      { path: "Production", element: <Production /> },
+      { path: "Sales", element: <Sales /> },
+      { path: "Employees", element: <Employees /> },
+      { path: "Suppliers", element: <Suppliers /> },
+      { path: "Accounting", element: <Accounting /> },
+      { path: "*", element: <h1>Not Found</h1>},
+    ],
+  },
+]);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <RouterProvider router={routers}></RouterProvider>
+    </>
   );
 }
-
 export default App;
